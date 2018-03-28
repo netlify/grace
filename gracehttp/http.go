@@ -14,8 +14,8 @@ import (
 	"sync"
 	"syscall"
 
-	"github.com/facebookgo/grace/gracenet"
 	"github.com/facebookgo/httpdown"
+	"github.com/netlify/grace/gracenet"
 )
 
 var (
