@@ -14,6 +14,7 @@ import (
 	"sync"
 	"syscall"
 
+	"github.com/coreos/go-systemd/daemon"
 	"github.com/facebookgo/httpdown"
 	"github.com/netlify/grace/gracenet"
 )
@@ -145,6 +146,8 @@ func (a *app) run() error {
 			logger.Printf(msg, pprintAddr(a.listeners), os.Getpid())
 		}
 	}
+
+	daemon.SdNotify(false, fmt.Sprintf("READY=1\nMAINPID=%d", os.Getpid()))
 
 	// Start serving.
 	a.serve()
